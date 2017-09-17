@@ -33,18 +33,10 @@ const config = {
 				}
 			},
 			{
-				test: /\.(png|jpg|gif)$/,
-				loader: "sizeof-loader",
-				options: {
-					limit: "8192",
-					name: "images/[name]-[hash].[ext]"
-				}
-			},
-			{
-				test: /\.(eot|svg|ttf|woff|woff2)$/,
+				test: /\.(png|jpg|gif|eot|svg|ttf|woff|woff2)$/,
 				loader: "file-loader",
 				options: {
-					name: "fonts/[name].[ext]"
+					name: "assets/[name].[ext]"
 				}
 			}
 		]
