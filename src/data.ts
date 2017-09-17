@@ -8,11 +8,12 @@ export interface TeamList {
 }
 
 export interface Match {
-	date: string,
-	home: string,
-	away: string,
-	venue: string,
+	date: string
+	home: string
+	away: string
+	venue: string
 	time: string
+	tip?: string
 }
 
 export interface Round {
@@ -70,7 +71,5 @@ export const aflData: AFLRoundData = {
 				{date: "02/04/2017", home: "Port Adelaide", away: "Fremantle", venue: "Adelaide Oval", time: "4.40pm"}
 			]
 		},
-
 	]
-
 }

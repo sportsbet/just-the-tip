@@ -1,0 +1,5 @@
+export const NavyBlue = "#0F1626"
+export const Leather = "#AB987A"
+export const Coral = "#FF533D"
+export const Eggshell = "#F5F5F5"
+export const White = "#FFFFFF"
