@@ -18,8 +18,14 @@ const matchTableStyle = style({
 const matchRowStyle = style({
 	padding: "0.65rem",
 	display: "flex",
-	justifyContent: "space-between",
 	backgroundColor: Eggshell
+})
+
+const halfRow = style({
+	flex: 1,
+	display: "flex",
+	padding: "0.4rem",
+	cursor: "pointer"
 })
 
 const teamStyle = style ({
@@ -40,34 +46,31 @@ const selectedTeamStyle = style({
 	color: White
 })
 
-const centerSpacer = style({
-	width: "1rem"
-})
-
 export function RoundView(props: RoundViewProps): JSX.Element {
-
-	
 
 	const matchDOM = props.selectedRound.matches.map((match, i) => {
 		
-		let homeTeamClassName = classnames(teamStyle, homeTeamStyle)
+		let homeSideStyle = halfRow
 		if (match.home === match.tip) {
-			homeTeamClassName = classnames(teamStyle, homeTeamStyle, selectedTeamStyle)
+			homeSideStyle = classnames(halfRow, selectedTeamStyle)
 		}
-		let awayTeamClassName = classnames(teamStyle, awayTeamStyle)
+		let awaySideStyle = halfRow
 		if (match.away === match.tip) {
-			awayTeamClassName = classnames(teamStyle, awayTeamStyle, selectedTeamStyle)
+			awaySideStyle = classnames(halfRow, selectedTeamStyle)
 		}
 	
 		return (
 			<div key={i} className={matchRowStyle}>
-				<div>{match.date}</div>
-				<div className={homeTeamClassName} onClick={() => {props.selectWinner(match, match.home)}}>{match.home}</div>
-				<div className={classnames(flags.flag, flags[match.home])} />
-				<div className={centerSpacer} />
-				<div className={classnames(flags.flag, flags[match.away])} />
-				<div className={awayTeamClassName} onClick={() => {props.selectWinner(match, match.away)}}>{match.away}</div>
-				<div>{match.time}</div>
+				<div className={homeSideStyle} onClick={() => {props.selectWinner(match, match.home)}}>
+					<div>{match.date}</div>
+					<div className={classnames(teamStyle, homeTeamStyle)}>{match.home}</div>
+					<div className={classnames(flags.flag, flags[match.home])} />
+				</div>
+				<div className={awaySideStyle} onClick={() => {props.selectWinner(match, match.away)}}>
+					<div className={classnames(flags.flag, flags[match.away])} />
+					<div className={classnames(teamStyle, awayTeamStyle)}>{match.away}</div>
+					<div>{match.time}</div>
+				</div>
 			</div>
 		)
 	})

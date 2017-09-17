@@ -60,7 +60,7 @@ export const aflData: AFLRoundData = {
 		{
 			num: 2,
 			matches: [
-				{date: "30/03/2017", home: "Richmond", away: "Richmond", venue: "MCG", time: "7.20pm"},
+				{date: "30/03/2017", home: "Richmond", away: "Collingwood", venue: "MCG", time: "7.20pm"},
 				{date: "30/03/2017", home: "Western Bulldogs", away: "Sydney", venue: "Etihad Stadium", time: "7.50pm"},
 				{date: "01/04/2017", home: "Hawthorn", away: "Adelaide", venue: "MCG", time: "1.45pm"},
 				{date: "01/04/2017", home: "GWS Giants", away: "Gold Coast", venue: "Spotless Stadium", time: "4.35pm"},

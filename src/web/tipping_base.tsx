@@ -7,7 +7,8 @@ import { TippingAppProps } from "../tipping_base_container"
 const contentStyle = style({
 	display: "flex",
 	flexDirection: "column",
-	maxWidth: "70rem"
+	maxWidth: "70rem",
+	fontFamily: "Titillium Web"
 })
 
 const contentHeaderStyle = style({
@@ -25,9 +26,9 @@ export function TippingBase(props: TippingAppProps) {
 		<div>
 			<div className={contentStyle}>
 				<div className={contentHeaderStyle}>
-					<button>&lt;&lt;</button>
+					<button onClick={() => {props.goPrevRound()}}>&lt;&lt;</button>
 					<div>Pick the winners in round {props.selectedRound.num}</div>
-					<button>&gt;&gt;</button>
+					<button onClick={() => {props.goNextRound()}}>&gt;&gt;</button>
 				</div>
 				<RoundView selectedRound={props.selectedRound} selectWinner={props.selectWinner} />
 			</div>
