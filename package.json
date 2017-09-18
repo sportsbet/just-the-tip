@@ -5,7 +5,8 @@
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
-		"clean": "rm -Rf build"
+		"clean": "rm -Rf build",
+		"start-web": "webpack-dev-server --content-base build/"
 	},
 	"dependencies": {
 		"@types/classnames": "^2.2.3",
