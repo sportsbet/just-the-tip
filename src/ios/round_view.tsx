@@ -45,21 +45,25 @@ export const RoundView: React.SFC<RoundViewProps> = (props) => {
         }
     
         return (
-            <View key={i} style={styles.matchRowStyle}>
-                <TouchableHighlight onPress={() => props.selectWinner(match, match.home)}>
-                    <View style={{flexDirection: "row", flex: 1, flexGrow: 1}}>
-                        <Text style={{fontSize: 12}}>{match.date}</Text>
-                        <Text style={{}}>{match.home}</Text>
-                        <Image style={{width: 38, height: 26}} source={flags[match.home]} />
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight onPress={() => props.selectWinner(match, match.away)}>
-                    <View style={{flexDirection: "row", flex: 1, flexGrow: 1}}>
-                        <Image style={{width: 38, height: 26}} source={flags[match.away]} />
-                        <Text style={{}}>{match.away}</Text>
-                        <Text style={{fontSize: 12}}>{match.time}</Text>
-                    </View>
-                </TouchableHighlight>
+            <View key={i} style={{flexDirection: "column", flex: 1}}>
+                <View style={{flexDirection: "row"}}>
+                    <Text>{match.date}</Text>
+                    <Text>{match.time}</Text>
+                </View>
+                <View style={styles.matchRowStyle}>
+                    <TouchableHighlight onPress={() => props.selectWinner(match, match.home)}>
+                        <View style={{flexDirection: "row", flex: 1, flexGrow: 1, alignItems: "flex-end"}}>
+                            <Text style={{}}>{match.home}</Text>
+                            <Image style={{width: 38, height: 26}} source={flags[match.home]} />
+                        </View>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => props.selectWinner(match, match.away)}>
+                        <View style={{flexDirection: "row", flex: 1, flexGrow: 1, alignItems: "flex-start"}}>
+                            <Image style={{width: 38, height: 26}} source={flags[match.away]} />
+                            <Text style={{}}>{match.away}</Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
             </View>
         )
     })
