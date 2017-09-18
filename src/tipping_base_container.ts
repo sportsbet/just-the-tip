@@ -24,7 +24,7 @@ export interface TippingBaseContainerProps {
 
 export class TippingBaseContainer extends React.Component<TippingBaseContainerProps, TippingAppState> {
 
-	constructor(props) {
+	constructor(props: TippingBaseContainerProps) {
 		super(props)
 		this.state = {
 			data: aflData,
