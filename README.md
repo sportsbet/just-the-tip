@@ -17,6 +17,9 @@ Run the Webpack Dev Server:
 
 ## Running (iOS)
 
+Running iOS requires a Mac. First, download and install 
+[Xcode](https://developer.apple.com/xcode/).
+
 Install the dependencies using Yarn or NPM:
 
     npm install
