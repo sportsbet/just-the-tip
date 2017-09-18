@@ -18,13 +18,18 @@ interface TippingBaseAppInterface {
 }
 
 export interface TippingBaseContainerProps {
-	child: TippingBaseAppInterface 
+	child: TippingBaseAppInterface
+	initialRoundNum?: number
 }
 
 export class TippingBaseContainer extends React.Component<TippingBaseContainerProps, TippingAppState> {
 
-	componentWillMount() {
-		this.setState({data: aflData, selectedRoundNum: 0})
+	constructor(props) {
+		super(props)
+		this.state = {
+			data: aflData,
+			selectedRoundNum: props.initialRoundNum ? props.initialRoundNum : 0
+		}
 	}
 
 	handleWinnerSelected = (match: Match, team: string) => {

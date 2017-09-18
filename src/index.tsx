@@ -17,11 +17,5 @@ const style = (dim) => {
 }
 
 export const Root: React.SFC<{}> = (props) => {
-    const dim = Dimensions.get("window")
-    return (
-        <NavigatorIOS 
-            initialRoute={{component: TippingScreen, title: "Test"}}
-            style={{flex: 1}}
-        />
-    )
+    return <Navigator/>
 }
