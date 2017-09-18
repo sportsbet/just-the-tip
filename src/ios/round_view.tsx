@@ -19,13 +19,16 @@ interface RoundViewProps {
 
 const styles: {[index: string]: ViewStyle | TextStyle} = {
     matchRowStyle: {
-
+        flexDirection: "row",
+        marginBottom: 8,
+        padding: 15,
+        flex: 1
     },
     halfRow: {
 
     },
     selectedTeamStyle: {
-
+        backgroundColor: NavyBlue
     }
 }
 
@@ -44,17 +47,17 @@ export const RoundView: React.SFC<RoundViewProps> = (props) => {
         return (
             <View key={i} style={styles.matchRowStyle}>
                 <TouchableHighlight onPress={() => props.selectWinner(match, match.home)}>
-                    <View style={homeSideStyle}>
-                        <Text>{match.date}</Text>
+                    <View style={{flexDirection: "row", flex: 1, flexGrow: 1}}>
+                        <Text style={{fontSize: 12}}>{match.date}</Text>
                         <Text style={{}}>{match.home}</Text>
-                        <Image style={{}} source={flags[match.home]} />
+                        <Image style={{width: 38, height: 26}} source={flags[match.home]} />
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => props.selectWinner(match, match.away)}>
-                    <View style={awaySideStyle}>
-                        <Image style={{}} source={flags[match.away]} />
+                    <View style={{flexDirection: "row", flex: 1, flexGrow: 1}}>
+                        <Image style={{width: 38, height: 26}} source={flags[match.away]} />
                         <Text style={{}}>{match.away}</Text>
-                        <Text>{match.time}</Text>
+                        <Text style={{fontSize: 12}}>{match.time}</Text>
                     </View>
                 </TouchableHighlight>
             </View>
