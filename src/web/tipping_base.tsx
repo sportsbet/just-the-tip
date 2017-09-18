@@ -1,7 +1,7 @@
 import * as React from "react"
 import { RoundView } from "./round_view"
 import { style } from "typestyle"
-import { NavyBlue, White } from "./colours"
+import { NavyBlue, White } from "../colours"
 import { TippingAppProps } from "../tipping_base_container"
 
 const contentStyle = style({
