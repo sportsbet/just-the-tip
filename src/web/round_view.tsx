@@ -1,9 +1,9 @@
 import * as React from "react"
 import { Round, Match } from "../data"
 import { style } from "typestyle"
-import { flags } from "../flags/flags"
+import { flags } from "../flags/flags.web"
 import * as classnames from "classnames"
-import { Eggshell, NavyBlue, White } from "./colours"
+import { Eggshell, NavyBlue, White } from "../colours"
 
 interface RoundViewProps {
 	selectedRound: Round

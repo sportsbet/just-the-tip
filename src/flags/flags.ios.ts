@@ -1,0 +1,20 @@
+export const flags = {
+	Adelaide: require("./Adelaide.jpg"),
+	Brisbane: require("./Brisbane.jpg"),
+	Carlton: require("./Carlton.jpg"),
+	Collingwood: require("./Collingwood.jpg"),
+	Essendon: require("./Essendon.jpg"),
+	Fremantle: require("./Fremantle.jpg"),
+	Geelong: require("./Geelong.jpg"),
+	"Gold Coast": require("./Gold Coast.jpg"),
+	"GWS Giants": require("./GWS Giants.jpg"),
+	Hawthorn: require("./Hawthorn.jpg"),
+	Melbourne: require("./Melbourne.jpg"),
+	"North Melbourne": require("./North Melbourne.jpg"),
+	"Port Adelaide": require("./Port Adelaide.jpg"),
+	Richmond: require("./Richmond.jpg"),
+	"St Kilda": require("./St Kilda.jpg"),
+	Sydney: require("./Sydney.jpg"),
+	"West Coast": require("./West Coast.jpg"),
+	"Western Bulldogs": require("./Western Bulldogs.jpg")
+}
