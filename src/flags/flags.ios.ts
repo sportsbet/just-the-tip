@@ -6,15 +6,15 @@ export const flags = {
 	Essendon: require("./Essendon.jpg"),
 	Fremantle: require("./Fremantle.jpg"),
 	Geelong: require("./Geelong.jpg"),
-	"Gold Coast": require("./Gold Coast.jpg"),
-	"GWS Giants": require("./GWS Giants.jpg"),
+	"Gold Coast": require("./GoldCoast.jpg"),
+	"GWS Giants": require("./GWSGiants.jpg"),
 	Hawthorn: require("./Hawthorn.jpg"),
 	Melbourne: require("./Melbourne.jpg"),
-	"North Melbourne": require("./North Melbourne.jpg"),
-	"Port Adelaide": require("./Port Adelaide.jpg"),
+	"North Melbourne": require("./NorthMelbourne.jpg"),
+	"Port Adelaide": require("./PortAdelaide.jpg"),
 	Richmond: require("./Richmond.jpg"),
-	"St Kilda": require("./St Kilda.jpg"),
+	"St Kilda": require("./StKilda.jpg"),
 	Sydney: require("./Sydney.jpg"),
-	"West Coast": require("./West Coast.jpg"),
-	"Western Bulldogs": require("./Western Bulldogs.jpg")
+	"West Coast": require("./WestCoast.jpg"),
+	"Western Bulldogs": require("./WesternBulldogs.jpg")
 }
