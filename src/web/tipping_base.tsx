@@ -1,8 +1,8 @@
 import * as React from "react"
-import { RoundView } from "./round_view"
+import { MatchList } from "./match_list"
 import { style } from "typestyle"
 import { NavyBlue, White } from "../colours"
-import { TippingAppProps } from "../tipping_base_container"
+import { TippingAppProps } from "../container"
 
 const contentStyle = style({
 	display: "flex",
@@ -30,7 +30,7 @@ export function TippingBase(props: TippingAppProps) {
 					<div>Pick the winners in round {props.selectedRound.num}</div>
 					<button onClick={() => {props.goNextRound()}}>&gt;&gt;</button>
 				</div>
-				<RoundView selectedRound={props.selectedRound} selectWinner={props.selectWinner} />
+				<MatchList selectedRound={props.selectedRound} selectWinner={props.selectWinner} />
 			</div>
 		</div>
 	)

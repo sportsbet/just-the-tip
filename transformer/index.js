@@ -18,54 +18,54 @@ const { compactMapping } = require("metro-bundler/src/Bundler/source-map")
  * 4. Store raw mappings of translated source-map so that RN can use them.
  **/
 function transformTypeScript(src, filename, options) {
-  options = options || {};
+	options = options || {};
 
-  const OLD_BABEL_ENV = process.env.BABEL_ENV;
-  process.env.BABEL_ENV = options.dev ? 'development' : 'production';
+	const OLD_BABEL_ENV = process.env.BABEL_ENV;
+	process.env.BABEL_ENV = options.dev ? 'development' : 'production';
 
-  try {
-    const compilerOptions = buildTSCompilerOptionsConfig()
-    const tsResult = ts.transpileModule(src, { compilerOptions })
+	try {
+		const compilerOptions = buildTSCompilerOptionsConfig()
+		const tsResult = ts.transpileModule(src, { compilerOptions })
 
-    const babelConfig = buildBabelConfig(filename, options);
-    const transformResult = babel.transform(tsResult.outputText, babelConfig);
+		const babelConfig = buildBabelConfig(filename, options);
+		const transformResult = babel.transform(tsResult.outputText, babelConfig);
 
-    const generateResult = generate(transformResult.ast, {
-      comments: false,
-      compact: false,
-      filename,
-      sourceFileName: filename,
-      sourceMaps: true,
-    }, src);
+		const generateResult = generate(transformResult.ast, {
+			comments: false,
+			compact: false,
+			filename,
+			sourceFileName: filename,
+			sourceMaps: true,
+		}, src);
 
-    // Translate generated source-map back to transformed JS source-map, which maps back to original TS code.
-    generateResult.map = mergeSourceMaps(transformResult.map, generateResult.map)
+		// Translate generated source-map back to transformed JS source-map, which maps back to original TS code.
+		generateResult.map = mergeSourceMaps(transformResult.map, generateResult.map)
 
-    // Use translated map during bundling or fixed raw mappings during dev.
-    let map
-    if (options.generateSourceMaps) {
-      map = generateResult.map
-    } else {
-      map = extractRawMappings(generateResult.map).map(compactMapping)
-    }
+		// Use translated map during bundling or fixed raw mappings during dev.
+		let map
+		if (options.generateSourceMaps) {
+			map = generateResult.map
+		} else {
+			map = extractRawMappings(generateResult.map).map(compactMapping)
+		}
 
-    return {
-      ast: transformResult.ast,
-      code: generateResult.code,
-      filename,
-      map,
-    };
-  } finally {
-    process.env.BABEL_ENV = OLD_BABEL_ENV;
-  }
+		return {
+			ast: transformResult.ast,
+			code: generateResult.code,
+			filename,
+			map,
+		};
+	} finally {
+		process.env.BABEL_ENV = OLD_BABEL_ENV;
+	}
 }
 
 function buildTSCompilerOptionsConfig() {
-  return Object.assign({}, tsConfig.compilerOptions, { inlineSourceMap: true })
+	return Object.assign({}, tsConfig.compilerOptions, { inlineSourceMap: true })
 }
 
 function buildBabelConfig(filename, options) {
-  return Object.assign({}, upstream.buildBabelConfig(filename, options), { code: true, sourceMap: true })
+	return Object.assign({}, upstream.buildBabelConfig(filename, options), { code: true, sourceMap: true })
 }
 
 /**
@@ -73,10 +73,10 @@ function buildBabelConfig(filename, options) {
  * @see https://github.com/babel/babel/issues/5408
  */
 function mergeSourceMaps(inputSourceMap, outputSourceMap) {
-  // TODO: The `mergeSourceMap` function modifies the `mappings` of the `inputSourceMap`, so make a deep copy first as
-  //       to not mutate the original copy.
-  inputSourceMap = JSON.parse(JSON.stringify(inputSourceMap))
-  return File.prototype.mergeSourceMap.apply({ opts: { inputSourceMap } }, [outputSourceMap])
+	// TODO: The `mergeSourceMap` function modifies the `mappings` of the `inputSourceMap`, so make a deep copy first as
+	//       to not mutate the original copy.
+	inputSourceMap = JSON.parse(JSON.stringify(inputSourceMap))
+	return File.prototype.mergeSourceMap.apply({ opts: { inputSourceMap } }, [outputSourceMap])
 }
 
 /**
@@ -84,37 +84,37 @@ function mergeSourceMaps(inputSourceMap, outputSourceMap) {
  * @see https://github.com/babel/babel/blob/f7e2d88f/packages/babel-generator/src/source-map.js#L73-L87
  */
 function extractRawMappings(sourceMap) {
-  const consumer = new SourceMapConsumer(sourceMap)
-  const rawMappings = []
-  consumer.eachMapping(({ name, source, originalLine, originalColumn, generatedLine, generatedColumn }) => {
-    rawMappings.push({
-      name,
-      source,
-      original: {
-        line: originalLine,
-        column: originalColumn,
-      },
-      generated: {
-        line: generatedLine,
-        column: generatedColumn,
-      },
-    })
-  })
-  return rawMappings
+	const consumer = new SourceMapConsumer(sourceMap)
+	const rawMappings = []
+	consumer.eachMapping(({ name, source, originalLine, originalColumn, generatedLine, generatedColumn }) => {
+		rawMappings.push({
+			name,
+			source,
+			original: {
+				line: originalLine,
+				column: originalColumn,
+			},
+			generated: {
+				line: generatedLine,
+				column: generatedColumn,
+			},
+		})
+	})
+	return rawMappings
 }
 
 function transform(_ref) {
-    let fileName = _ref.filename, options = _ref.options, sourceCode = _ref.src
-    try {
-      let src = sourceCode
-      if (path.extname(fileName) == ".tsx" || path.extname(fileName) == ".ts") {
-        src = transformTypeScript(src, fileName, options)
-      } else {
-        src = upstream.transform(_ref)
-      }
-      return src
-    } catch(e) {
-      console.error(e)
-    }
+		let fileName = _ref.filename, options = _ref.options, sourceCode = _ref.src
+		try {
+			let src = sourceCode
+			if (path.extname(fileName) == ".tsx" || path.extname(fileName) == ".ts") {
+				src = transformTypeScript(src, fileName, options)
+			} else {
+				src = upstream.transform(_ref)
+			}
+			return src
+		} catch(e) {
+			console.error(e)
+		}
 }
 module.exports.transform = transform;

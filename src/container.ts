@@ -17,14 +17,14 @@ interface TippingBaseAppInterface {
 	(props: TippingAppProps): JSX.Element
 }
 
-export interface TippingBaseContainerProps {
+export interface ContainerProps {
 	child: TippingBaseAppInterface
 	initialRoundNum?: number
 }
 
-export class TippingBaseContainer extends React.Component<TippingBaseContainerProps, TippingAppState> {
+export class Container extends React.Component<ContainerProps, TippingAppState> {
 
-	constructor(props: TippingBaseContainerProps) {
+	constructor(props: ContainerProps) {
 		super(props)
 		this.state = {
 			data: aflData,

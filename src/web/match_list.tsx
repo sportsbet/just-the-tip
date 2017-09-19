@@ -5,7 +5,7 @@ import { flags } from "../flags/flags.web"
 import * as classnames from "classnames"
 import { Eggshell, NavyBlue, White } from "../colours"
 
-interface RoundViewProps {
+interface Props {
 	selectedRound: Round
 	selectWinner: (match: Match, winner: string) => void
 }
@@ -46,7 +46,7 @@ const selectedTeamStyle = style({
 	color: White
 })
 
-export function RoundView(props: RoundViewProps): JSX.Element {
+export function MatchList(props: Props): JSX.Element {
 
 	const matchDOM = props.selectedRound.matches.map((match, i) => {
 		
