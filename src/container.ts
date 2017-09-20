@@ -1,9 +1,11 @@
 import * as React from "react"
 import { aflData, AFLRoundData, Round, Match } from "./data"
+import { TippingStats, generateStats } from "./tipping_stats_calculator"
 
 interface TippingAppState {
 	data: AFLRoundData
 	selectedRoundNum: number
+	stats: TippingStats
 }
 
 export interface TippingAppProps {
@@ -11,6 +13,7 @@ export interface TippingAppProps {
 	selectWinner: (match: Match, winner: string) => void
 	goPrevRound: () => void
 	goNextRound: () => void
+	stats: TippingStats
 }
 
 interface TippingBaseAppInterface {
@@ -28,13 +31,17 @@ export class Container extends React.Component<ContainerProps, TippingAppState> 
 		super(props)
 		this.state = {
 			data: aflData,
-			selectedRoundNum: props.initialRoundNum ? props.initialRoundNum : 0
+			selectedRoundNum: props.initialRoundNum ? props.initialRoundNum : 0,
+			stats: generateStats(aflData)
 		}
 	}
 
 	handleWinnerSelected = (match: Match, team: string) => {
 		match.tip = team
-		this.setState({data: aflData})
+		this.setState({
+			data: aflData,
+			stats: generateStats(aflData)
+		})
 	}
 
 	goPrevRound = () => {
@@ -55,7 +62,8 @@ export class Container extends React.Component<ContainerProps, TippingAppState> 
 			selectedRound, 
 			selectWinner: this.handleWinnerSelected, 
 			goPrevRound: this.goPrevRound, 
-			goNextRound: this.goNextRound
+			goNextRound: this.goNextRound,
+			stats: this.state.stats
 		})
 	}
 

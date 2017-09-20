@@ -11,12 +11,14 @@ import {
 } from "react-native"
 import { Round, Match } from "../data"
 import { flags } from "../flags/flags.ios"
+import { TippingStats } from "../tipping_stats_calculator"
 
 import * as Colours from "../colours"
 
 interface Props {
 	selectedRound: Round
 	selectWinner: (match: Match, winner: string) => void
+	stats: TippingStats
 }
 
 const styles: {[index: string]: ViewStyle | TextStyle} = {
@@ -58,6 +60,10 @@ const styles: {[index: string]: ViewStyle | TextStyle} = {
 }
 
 export function MatchList(props: Props): JSX.Element {
+
+	const statsBar = 
+		<Text>Your favourite team is {props.stats.favouriteTeam} with {props.stats.tipCount} tips</Text>
+
 	const matchTable = props.selectedRound.matches.map((match, i) => {
 		
 		let homeSideStyle: ViewStyle = Object.assign({}, styles.homeTeamStyle)
@@ -95,15 +101,22 @@ export function MatchList(props: Props): JSX.Element {
 						</View>
 					</TouchableHighlight>
 				</View>
+				<View>
+					<Text style={awayTextStyle}>{match.away}</Text>
+				</View>
 			</View>
 		)
 	})
 
 	return (
-		<ScrollView>
-			<View style={{flex: 1, flexDirection: "column"}}>
-				<View style={styles.matchTableStyle}>{matchTable}</View>
-			</View>
-		</ScrollView>
+		<View style={{flex: 1}}>
+			<ScrollView style={{flex: 1}}>
+				<View style={{flex: 1, flexDirection: "column"}}>
+					<View style={styles.matchTableStyle}>{matchTable}</View>
+				</View>
+				{statsBar}
+			</ScrollView>
+			<View style={{backgroundColor: "gray", height: 64}}>{statsBar}</View>
+		</View>
 	)
 }

@@ -20,7 +20,17 @@ const contentHeaderStyle = style({
 	justifyContent: "space-between"
 })
 
+const tipsBarStyle = style({
+	backgroundColor: NavyBlue,
+	color: White,
+	fontSize: "1.7em",
+	padding: "0.82rem"
+})
+
 export function TippingBase(props: TippingAppProps) {
+
+	const statsBar = 
+		<div className={tipsBarStyle}>Your favourite team is {props.stats.favouriteTeam} with {props.stats.tipCount} tips</div>
 
 	return (
 		<div>
@@ -31,6 +41,7 @@ export function TippingBase(props: TippingAppProps) {
 					<button onClick={() => {props.goNextRound()}}>&gt;&gt;</button>
 				</div>
 				<MatchList selectedRound={props.selectedRound} selectWinner={props.selectWinner} />
+				{(props.stats.tipCount > 1) ? statsBar : null}
 			</div>
 		</div>
 	)

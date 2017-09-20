@@ -6,7 +6,8 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
 		"clean": "rm -Rf build",
-		"start-web": "webpack-dev-server"
+		"start-web": "webpack-dev-server",
+		"watch-test": "jest --watch"
 	},
 	"dependencies": {
 		"@types/classnames": "^2.2.3",
@@ -21,6 +22,7 @@
 	},
 	"devDependencies": {
 		"@types/html-webpack-plugin": "^2.28.0",
+		"@types/jest": "^20.0.8",
 		"@types/node": "^8.0.28",
 		"@types/webpack": "^3.0.10",
 		"babel-jest": "21.0.2",
@@ -37,6 +39,21 @@
 		"webpack-dev-server": "^2.8.2"
 	},
 	"jest": {
-		"preset": "react-native"
+		"preset": "react-native",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json"
+		],
+		"transform": {
+			"^.+\\.tsx?$": "<rootDir>/transformer/jestTypeScriptPreprocessor.js",
+			"^.+\\.jsx?$": "<rootDir>/node_modules/babel-jest/build/index.js"
+		},
+		"testRegex": "(\\.test\\.tsx?)$",
+		"modulePathIgnorePatterns": [
+			"<rootDir>/build/"
+		]
 	}
 }
