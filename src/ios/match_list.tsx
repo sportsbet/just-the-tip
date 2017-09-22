@@ -61,8 +61,11 @@ const styles: {[index: string]: ViewStyle | TextStyle} = {
 
 export function MatchList(props: Props): JSX.Element {
 
-	const statsBar = 
-		<Text>Your favourite team is {props.stats.favouriteTeam} with {props.stats.tipCount} tips</Text>
+	const statsBar = (
+		<View style={{height: 35, backgroundColor: Colours.NavyBlue, justifyContent: "center"}}>
+			<Text style={{color: Colours.White}}>Favourite team is {props.stats.favouriteTeam} with {props.stats.tipCount} tips</Text>
+		</View>
+	)
 
 	const matchTable = props.selectedRound.matches.map((match, i) => {
 		
@@ -101,9 +104,6 @@ export function MatchList(props: Props): JSX.Element {
 						</View>
 					</TouchableHighlight>
 				</View>
-				<View>
-					<Text style={awayTextStyle}>{match.away}</Text>
-				</View>
 			</View>
 		)
 	})
@@ -114,9 +114,8 @@ export function MatchList(props: Props): JSX.Element {
 				<View style={{flex: 1, flexDirection: "column"}}>
 					<View style={styles.matchTableStyle}>{matchTable}</View>
 				</View>
-				{statsBar}
 			</ScrollView>
-			<View style={{backgroundColor: "gray", height: 64}}>{statsBar}</View>
+			{(props.stats.tipCount > 1) ? statsBar : null}
 		</View>
 	)
 }
